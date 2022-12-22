@@ -1,0 +1,450 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://theme.tres" type="Theme" id=1]
+[ext_resource path="res://add_input.gd" type="Script" id=2]
+[ext_resource path="res://main.gd" type="Script" id=3]
+[ext_resource path="res://mouse_panel.gd" type="Script" id=4]
+
+[node name="Main" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 1 )
+script = ExtResource( 3 )
+
+[node name="Panel" type="Panel" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_type_variation = "BGPanel"
+
+[node name="MainDivider" type="HBoxContainer" parent="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="InputPanel" type="Panel" parent="Panel/MainDivider"]
+margin_right = 624.0
+margin_bottom = 524.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="Control" type="Control" parent="Panel/MainDivider/InputPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="InputDivider" type="HBoxContainer" parent="Panel/MainDivider/InputPanel/Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="FramePanel" type="Panel" parent="Panel/MainDivider/InputPanel/Control/InputDivider"]
+margin_right = 321.0
+margin_bottom = 508.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="InputFrames" type="VBoxContainer" parent="Panel/MainDivider/InputPanel/Control/InputDivider/FramePanel"]
+unique_name_in_owner = true
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="InputButtons" type="VBoxContainer" parent="Panel/MainDivider/InputPanel/Control/InputDivider"]
+margin_left = 329.0
+margin_right = 359.0
+margin_bottom = 508.0
+rect_min_size = Vector2( 30, 0 )
+
+[node name="AddInput" type="Button" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputButtons"]
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+text = "+"
+script = ExtResource( 2 )
+
+[node name="RemoveInput" type="Button" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputButtons"]
+margin_top = 34.0
+margin_right = 30.0
+margin_bottom = 64.0
+rect_min_size = Vector2( 0, 30 )
+text = "-"
+
+[node name="DuplicateInput" type="Button" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputButtons"]
+margin_top = 68.0
+margin_right = 30.0
+margin_bottom = 98.0
+rect_min_size = Vector2( 0, 30 )
+text = "*"
+
+[node name="InputControls" type="VBoxContainer" parent="Panel/MainDivider/InputPanel/Control/InputDivider"]
+margin_left = 367.0
+margin_right = 608.0
+margin_bottom = 508.0
+rect_min_size = Vector2( 241, 0 )
+custom_constants/separation = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls"]
+margin_right = 241.0
+margin_bottom = 148.0
+custom_constants/separation = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer"]
+margin_right = 241.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 0, 70 )
+size_flags_horizontal = 3
+
+[node name="ArrowPanel" type="Panel" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer"]
+margin_right = 116.0
+margin_bottom = 70.0
+size_flags_horizontal = 3
+theme_type_variation = "GroupPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="Label" type="Label" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer"]
+margin_right = 100.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 0, 14 )
+text = "Arrows"
+
+[node name="GridContainer" type="GridContainer" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer"]
+margin_left = 22.0
+margin_top = 18.0
+margin_right = 78.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 0, 52 )
+size_flags_horizontal = 4
+columns = 3
+
+[node name="Control" type="Control" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer"]
+margin_left = 8.0
+margin_right = 8.0
+margin_bottom = 16.0
+size_flags_horizontal = 6
+size_flags_vertical = 5
+
+[node name="KeyU" type="CheckBox" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+margin_left = 20.0
+margin_right = 36.0
+margin_bottom = 16.0
+size_flags_horizontal = 6
+size_flags_vertical = 5
+
+[node name="Control2" type="Control" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer"]
+margin_left = 48.0
+margin_right = 48.0
+margin_bottom = 16.0
+size_flags_horizontal = 6
+size_flags_vertical = 5
+
+[node name="KeyL" type="CheckBox" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+margin_top = 20.0
+margin_right = 16.0
+margin_bottom = 36.0
+size_flags_horizontal = 6
+size_flags_vertical = 5
+
+[node name="KeyD" type="CheckBox" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 36.0
+margin_bottom = 36.0
+size_flags_horizontal = 6
+size_flags_vertical = 5
+
+[node name="KeyR" type="CheckBox" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+margin_left = 40.0
+margin_top = 20.0
+margin_right = 56.0
+margin_bottom = 36.0
+size_flags_horizontal = 6
+size_flags_vertical = 5
+
+[node name="ZXCPanel" type="Panel" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer"]
+margin_left = 124.0
+margin_right = 241.0
+margin_bottom = 70.0
+size_flags_horizontal = 3
+theme_type_variation = "GroupPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="Label4" type="Label" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer"]
+margin_right = 101.0
+margin_bottom = 14.0
+text = "ZXC"
+
+[node name="HBoxContainer" type="GridContainer" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer"]
+margin_left = 22.0
+margin_top = 18.0
+margin_right = 78.0
+margin_bottom = 52.0
+size_flags_horizontal = 4
+size_flags_vertical = 2
+columns = 3
+
+[node name="KeyZ" type="CheckBox" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_right = 16.0
+margin_bottom = 16.0
+size_flags_horizontal = 6
+
+[node name="KeyX" type="CheckBox" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 20.0
+margin_right = 36.0
+margin_bottom = 16.0
+size_flags_horizontal = 6
+
+[node name="KeyC" type="CheckBox" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 40.0
+margin_right = 56.0
+margin_bottom = 16.0
+size_flags_horizontal = 6
+
+[node name="Label" type="Label" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer"]
+margin_left = 4.0
+margin_top = 20.0
+margin_right = 12.0
+margin_bottom = 34.0
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "Z"
+align = 1
+
+[node name="Label2" type="Label" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer"]
+margin_left = 24.0
+margin_top = 20.0
+margin_right = 32.0
+margin_bottom = 34.0
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "X"
+align = 1
+
+[node name="Label3" type="Label" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer"]
+margin_left = 44.0
+margin_top = 20.0
+margin_right = 52.0
+margin_bottom = 34.0
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "C"
+align = 1
+
+[node name="MiscPanel" type="Panel" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer"]
+margin_top = 78.0
+margin_right = 241.0
+margin_bottom = 148.0
+rect_min_size = Vector2( 0, 70 )
+theme_type_variation = "GroupPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel"]
+anchor_right = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="Label" type="Label" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer"]
+margin_right = 225.0
+margin_bottom = 14.0
+text = "Misc"
+
+[node name="GridContainer" type="GridContainer" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer"]
+margin_left = 64.0
+margin_top = 18.0
+margin_right = 160.0
+margin_bottom = 52.0
+size_flags_horizontal = 4
+columns = 5
+
+[node name="KeyP" type="CheckBox" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+margin_right = 16.0
+margin_bottom = 16.0
+
+[node name="KeyS" type="CheckBox" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+margin_left = 20.0
+margin_right = 36.0
+margin_bottom = 16.0
+
+[node name="KeySemi" type="CheckBox" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+margin_left = 40.0
+margin_right = 56.0
+margin_bottom = 16.0
+
+[node name="KeyMinus" type="CheckBox" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+margin_left = 60.0
+margin_right = 76.0
+margin_bottom = 16.0
+
+[node name="KeyPlus" type="CheckBox" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
+unique_name_in_owner = true
+margin_left = 80.0
+margin_right = 96.0
+margin_bottom = 16.0
+
+[node name="Label" type="Label" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
+margin_top = 20.0
+margin_right = 16.0
+margin_bottom = 34.0
+text = "P"
+align = 1
+
+[node name="Label2" type="Label" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 36.0
+margin_bottom = 34.0
+text = "S"
+align = 1
+
+[node name="Label3" type="Label" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
+margin_left = 40.0
+margin_top = 20.0
+margin_right = 56.0
+margin_bottom = 34.0
+text = ";"
+align = 1
+
+[node name="Label4" type="Label" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
+margin_left = 60.0
+margin_top = 20.0
+margin_right = 76.0
+margin_bottom = 34.0
+text = "-"
+align = 1
+
+[node name="Label5" type="Label" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
+margin_left = 80.0
+margin_top = 20.0
+margin_right = 96.0
+margin_bottom = 34.0
+text = "+"
+align = 1
+
+[node name="MousePanel" type="Panel" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls"]
+margin_top = 156.0
+margin_right = 241.0
+margin_bottom = 508.0
+rect_min_size = Vector2( 0, 60 )
+size_flags_vertical = 3
+theme_type_variation = "GroupPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="Label" type="Label" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer"]
+margin_right = 225.0
+margin_bottom = 14.0
+text = "Mouse"
+
+[node name="MouseHeld" type="CheckBox" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer"]
+unique_name_in_owner = true
+margin_top = 18.0
+margin_right = 225.0
+margin_bottom = 34.0
+text = "Held"
+
+[node name="MouseXContainer" type="HBoxContainer" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer"]
+margin_top = 38.0
+margin_right = 225.0
+margin_bottom = 62.0
+
+[node name="Label" type="Label" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer/MouseXContainer"]
+margin_top = 5.0
+margin_right = 8.0
+margin_bottom = 19.0
+text = "X"
+
+[node name="MouseX" type="SpinBox" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer/MouseXContainer"]
+unique_name_in_owner = true
+margin_left = 16.0
+margin_right = 225.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+max_value = 450.0
+
+[node name="MouseYContainer" type="HBoxContainer" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer"]
+margin_top = 66.0
+margin_right = 225.0
+margin_bottom = 90.0
+
+[node name="Label" type="Label" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer/MouseYContainer"]
+margin_top = 5.0
+margin_right = 7.0
+margin_bottom = 19.0
+text = "Y"
+
+[node name="MouseY" type="SpinBox" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer/MouseYContainer"]
+unique_name_in_owner = true
+margin_left = 15.0
+margin_right = 225.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+max_value = 300.0
+
+[node name="MousePanel" type="Panel" parent="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer"]
+margin_top = 94.0
+margin_right = 225.0
+margin_bottom = 244.0
+rect_min_size = Vector2( 225, 150 )
+theme_type_variation = "MousePanel"
+script = ExtResource( 4 )
+
+[node name="RNGPanel" type="Panel" parent="Panel/MainDivider"]
+margin_left = 632.0
+margin_right = 944.0
+margin_bottom = 524.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[connection signal="pressed" from="Panel/MainDivider/InputPanel/Control/InputDivider/InputButtons/AddInput" to="Panel/MainDivider/InputPanel/Control/InputDivider/InputButtons/AddInput" method="_on_AddInput_pressed"]
+[connection signal="toggled" from="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer/KeyU" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer/KeyL" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer/KeyD" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer/KeyR" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer/KeyZ" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer/KeyX" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer/KeyC" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer/KeyP" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer/KeyS" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer/KeySemi" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer/KeyMinus" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer/KeyPlus" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer/MouseHeld" to="." method="set_frame_inputs"]
+[connection signal="value_changed" from="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer/MouseXContainer/MouseX" to="." method="set_frame_inputs"]
+[connection signal="value_changed" from="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer/MouseYContainer/MouseY" to="." method="set_frame_inputs"]
+[connection signal="gui_input" from="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer/MousePanel" to="Panel/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer/MousePanel" method="_on_MousePanel_gui_input"]
