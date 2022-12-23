@@ -32,7 +32,6 @@ func _clear_frames() -> void:
 func _load_frames(content: String) -> void:
 	if content.begins_with("{"):
 		content = content.substr(content.find("}") + 1)
-	print(content)
 	var segments = content.split("/")
 	var frames = []
 	for run in segments[0].split("#"):
@@ -47,7 +46,6 @@ func _load_frames(content: String) -> void:
 			frame_list.add_child(inst)
 			inst.give_keys(split[0])
 			frames.append(inst)
-	print(frames.size())
 	var index = 0
 	for run in segments[1].split("#"):
 		var split = run.split("&")
@@ -58,11 +56,58 @@ func _load_frames(content: String) -> void:
 			amount = 1
 		for i in range(amount):
 			var mouse = split[0].split("~")
-			print(bool(int(mouse[0].substr(0, 1))))
 			frames[index].give_mouse(bool(int(mouse[0].substr(0, 1))), Vector2(mouse[0].substr(1), mouse[1]))
 			frames[index].update_input_string()
 			index += 1
+
+
+func _generate_file() -> String:
+	var keys = ""
+	var mouse = ""
+	var rng = ""
+	var run_count_key = 0
+	var run_count_mouse = 0
+	var prev_keys = "*"
+	var prev_mouse = "*"
+	for frame in frame_list.get_children():
+		var key_string = frame.get_key_string(true)
+		if key_string == prev_keys:
+			run_count_key += 1
+		else:
+			if prev_keys != "*":
+				if run_count_key == 0:
+					keys += prev_keys
+				else:
+					keys += "%s&%d" % [prev_keys, run_count_key - 1]
+				keys += "#"
+			prev_keys = key_string
+			run_count_key = 0
+		
+		var mouse_string = frame.get_mouse_string(true)
+		if mouse_string == prev_mouse:
+			run_count_mouse += 1
+		else:
+			if prev_mouse != "*":
+				if run_count_mouse == 0:
+					mouse += prev_mouse
+				else:
+					mouse += "%s&%d" % [prev_mouse, run_count_mouse - 1]
+				mouse += "#"
+			prev_mouse = mouse_string
+			run_count_mouse = 0
 	
+	if run_count_key == 0:
+		keys += prev_keys
+	else:
+		keys += "%s&%d" % [prev_keys, run_count_key - 1]
+	
+	if run_count_mouse == 0:
+		mouse += prev_mouse
+	else:
+		mouse += "%s&%d" % [prev_mouse, run_count_mouse - 1]
+	
+	var output = "%s/%s/%s" % [keys, mouse, rng]
+	return output
 
 
 func _on_FileDialog_file_selected(path):
@@ -75,7 +120,8 @@ func _on_FileDialog_file_selected(path):
 			_clear_frames()
 			_load_frames(content)
 		file_dialog.MODE_SAVE_FILE:
+			var content = _generate_file()
 			var file = File.new()
 			file.open(path, File.WRITE)
-			file.store_string("gay")
+			file.store_string(content)
 			file.close()

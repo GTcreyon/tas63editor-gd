@@ -40,7 +40,7 @@ func set_input_string() -> void:
 
 
 func update_input_string() -> void:
-	label.text = " %-5s %s %d~%03d~%03d" % ["%d:" % get_index(), _get_key_string(), int(mouse_held), mouse_pos.x, mouse_pos.y]
+	label.text = " %-5s %s %s" % ["%d:" % get_index(), get_key_string(), get_mouse_string()]
 
 
 func set_key_string() -> void:
@@ -52,14 +52,20 @@ func set_mouse_string() -> void:
 	mouse_pos = main.get_mouse_pos()
 
 
-func _get_key_string() -> String:
+func get_key_string(stripped: bool = false) -> String:
 	var output = ""
 	for key in keys:
 		if keys[key]:
 			output += key
-		else:
+		elif !stripped:
 			output += "_"
 	return output
+
+
+func get_mouse_string(stripped: bool = false) -> String:
+	if stripped:
+		return "%d%d~%d" % [int(mouse_held), mouse_pos.x, mouse_pos.y]
+	return "%d~%03d~%03d" % [int(mouse_held), mouse_pos.x, mouse_pos.y]
 
 
 func _on_Frame_button_down():
