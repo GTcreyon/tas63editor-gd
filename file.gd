@@ -125,7 +125,15 @@ func _generate_file() -> String:
 	else:
 		mouse += "%s&%d" % [prev_mouse, run_count_mouse - 1]
 	
-	var output = "%s/%s/%s" % [keys, mouse, rng]
+	var first_event = true
+	for event in event_list.get_children():
+		if first_event:
+			first_event = false
+		else:
+			rng += "#"
+		rng += "%s~%s" % [event.index, event.value]
+	
+	var output = "{2}%s/%s/%s" % [keys, mouse, rng]
 	return output
 
 
