@@ -11,6 +11,27 @@ onready var event_list = $"%RNGEvents"
 onready var file_dialog = $FileDialog
 
 
+func _init():
+	var input
+	input = InputEventKey.new()
+	input.control = true
+	input.scancode = KEY_N
+	get_popup().add_item("New", 0, input.get_scancode_with_modifiers())
+	input = InputEventKey.new()
+	input.control = true
+	input.scancode = KEY_O
+	get_popup().add_item("Open", 1, input.get_scancode_with_modifiers())
+	input = InputEventKey.new()
+	input.control = true
+	input.scancode = KEY_S
+	get_popup().add_item("Save", 2, input.get_scancode_with_modifiers())
+	input = InputEventKey.new()
+	input.control = true
+	input.shift = true
+	input.scancode = KEY_S
+	get_popup().add_item("Save As", 3, input.get_scancode_with_modifiers())
+
+
 func _ready():
 	get_popup().connect("id_pressed", self, "_selected")
 
