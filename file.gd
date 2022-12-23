@@ -3,6 +3,8 @@ extends MenuButton
 const FRAME_PREFAB = preload("res://frame.tscn")
 const EVENT_PREFAB = preload("res://event.tscn")
 
+var current_file = ""
+
 onready var main = $"/root/Main"
 onready var frame_list = $"%InputFrames"
 onready var event_list = $"%RNGEvents"
@@ -18,12 +20,23 @@ func _selected(id):
 		0: # New
 			_clear_frames()
 			_clear_events()
+			current_file = ""
 		1: # Open
 			file_dialog.mode = file_dialog.MODE_OPEN_FILE
 			file_dialog.popup_centered(Vector2(450, 300))
 		2: # Save
-			file_dialog.mode = file_dialog.MODE_SAVE_FILE
-			file_dialog.popup_centered(Vector2(450, 300))
+			if current_file == "":
+				_save_as()
+			else:
+				_save_file(current_file)
+		3: # Save As
+			_save_as()
+
+
+func _save_as() -> void:
+	file_dialog.mode = file_dialog.MODE_SAVE_FILE
+	file_dialog.popup_centered(Vector2(450, 300))
+	
 
 
 func _clear_frames() -> void:
@@ -139,6 +152,7 @@ func _generate_file() -> String:
 
 
 func _on_FileDialog_file_selected(path):
+	current_file = path
 	match file_dialog.mode:
 		file_dialog.MODE_OPEN_FILE:
 			var file = File.new()
@@ -149,8 +163,12 @@ func _on_FileDialog_file_selected(path):
 			_clear_events()
 			_load_data(content)
 		file_dialog.MODE_SAVE_FILE:
-			var content = _generate_file()
-			var file = File.new()
-			file.open(path, File.WRITE)
-			file.store_string(content)
-			file.close()
+			_save_file(path)
+
+
+func _save_file(path: String) -> void:
+	var content = _generate_file()
+	var file = File.new()
+	file.open(path, File.WRITE)
+	file.store_string(content)
+	file.close()
