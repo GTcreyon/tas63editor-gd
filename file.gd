@@ -17,6 +17,7 @@ func _selected(id):
 	match id:
 		0: # New
 			_clear_frames()
+			_clear_events()
 		1: # Open
 			file_dialog.mode = file_dialog.MODE_OPEN_FILE
 			file_dialog.popup_centered(Vector2(450, 300))
