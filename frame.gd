@@ -23,14 +23,24 @@ var mouse_held: bool = false
 var mouse_pos: Vector2
 
 
-func _ready() -> void:
-	set_input_string()
+func give_keys(keystring: String) -> void:
+	for key in keystring:
+		keys[key] = true
+
+
+func give_mouse(held: bool, pos: Vector2) -> void:
+	mouse_held = held
+	mouse_pos = pos
 
 
 func set_input_string() -> void:
 	set_key_string()
 	set_mouse_string()
-	label.text = "%-5s %s %d~%03d~%03d" % ["%d:" % get_index(), _get_key_string(), int(mouse_held), mouse_pos.x, mouse_pos.y]
+	update_input_string()
+
+
+func update_input_string() -> void:
+	label.text = " %-5s %s %d~%03d~%03d" % ["%d:" % get_index(), _get_key_string(), int(mouse_held), mouse_pos.x, mouse_pos.y]
 
 
 func set_key_string() -> void:

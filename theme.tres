@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=11 format=2]
+[gd_resource type="Theme" load_steps=12 format=2]
 
 [ext_resource path="res://monospace.tres" type="DynamicFont" id=1]
 
@@ -33,17 +33,21 @@ corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.0336, 0.0336, 0.04, 1 )
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-border_color = Color( 0.0672, 0.0672, 0.08, 1 )
 corner_radius_top_left = 4
 corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxEmpty" id=9]
+
+[sub_resource type="StyleBoxFlat" id=10]
+bg_color = Color( 0.0336, 0.0336, 0.04, 1 )
+border_width_left = 4
+border_width_right = 4
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.2352, 0.2352, 0.28, 1 )
@@ -73,11 +77,14 @@ Button/styles/hover = SubResource( 7 )
 Button/styles/normal = SubResource( 5 )
 Button/styles/pressed = SubResource( 6 )
 CheckBox/styles/normal = SubResource( 9 )
-Frame/base_type = "Label"
-Frame/fonts/font = ExtResource( 1 )
+Frame/base_type = "Button"
+Frame/styles/pressed = SubResource( 10 )
+FrameLabel/base_type = "Label"
+FrameLabel/fonts/font = ExtResource( 1 )
 GroupPanel/base_type = "Panel"
 GroupPanel/styles/panel = SubResource( 4 )
 HBoxContainer/constants/separation = 8
 MousePanel/base_type = "Panel"
 MousePanel/styles/panel = SubResource( 2 )
 Panel/styles/panel = SubResource( 3 )
+VBoxContainer/constants/separation = 8

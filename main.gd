@@ -1,9 +1,27 @@
 extends Control
 
 var selected_frames: Array = []
-var last_selected: Frame = null
+var last_selected: int = -1
 
 onready var frame_list = $"%InputFrames"
+
+
+func set_inputs(keys: Dictionary, mouse_held: bool, mouse_pos: Vector2) -> void:
+	$"%KeyU".pressed = keys["U"]
+	$"%KeyD".pressed = keys["D"]
+	$"%KeyL".pressed = keys["L"]
+	$"%KeyR".pressed = keys["R"]
+	$"%KeyZ".pressed = keys["Z"]
+	$"%KeyX".pressed = keys["X"]
+	$"%KeyC".pressed = keys["C"]
+	$"%KeyP".pressed = keys["P"]
+	$"%KeyS".pressed = keys["S"]
+	$"%KeySemi".pressed = keys[";"]
+	$"%KeyMinus".pressed = keys["-"]
+	$"%KeyPlus".pressed = keys["+"]
+	$"%MouseHeld".pressed = mouse_held
+	$"%MouseX".value = mouse_pos.x
+	$"%MouseY".value = mouse_pos.y
 
 
 func get_keys() -> Dictionary:
@@ -32,9 +50,9 @@ func get_mouse_pos() -> Vector2:
 
 
 func frame_pressed(frame: Frame) -> void:
-	if Input.is_action_pressed("shift"):
+	if Input.is_action_pressed("select_many"):
 		var all_frames = frame_list.get_children()
-		var end_indexes = [last_selected.get_index(), frame.get_index()]
+		var end_indexes = [last_selected, frame.get_index()]
 		if end_indexes[0] > end_indexes[1]:
 			end_indexes.invert()
 		for child in all_frames.slice(end_indexes[0] + 1, end_indexes[1] - 1):
@@ -43,14 +61,21 @@ func frame_pressed(frame: Frame) -> void:
 		selected_frames.append(all_frames[end_indexes[0]])
 		selected_frames.append(all_frames[end_indexes[1]])
 	else:
-		if !Input.is_action_pressed("ctrl"):
+		if !Input.is_action_pressed("select_multi"):
 			for frame in selected_frames:
 				frame.pressed = false
 			selected_frames = []
 		selected_frames.append(frame)
-		last_selected = frame
+		last_selected = frame.get_index()
+		set_inputs(frame.keys, frame.mouse_held, frame.mouse_pos)
 
 
 func set_frame_inputs(button_pressed):
 	for frame in selected_frames:
 		frame.set_input_string()
+
+
+func update_after(index: int) -> void:
+	var all_frames = frame_list.get_children()
+	for child in all_frames.slice(index + 2, all_frames.size()):
+		child.update_input_string()
