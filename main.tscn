@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://theme.tres" type="Theme" id=1]
 [ext_resource path="res://add_input.gd" type="Script" id=2]
@@ -7,6 +7,9 @@
 [ext_resource path="res://key.gd" type="Script" id=5]
 [ext_resource path="res://file.gd" type="Script" id=6]
 [ext_resource path="res://add_event.gd" type="Script" id=7]
+[ext_resource path="res://remove_event.gd" type="Script" id=8]
+[ext_resource path="res://remove_frame.gd" type="Script" id=9]
+[ext_resource path="res://clone_frame.gd" type="Script" id=10]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -118,6 +121,7 @@ margin_right = 30.0
 margin_bottom = 68.0
 rect_min_size = Vector2( 0, 30 )
 text = "-"
+script = ExtResource( 9 )
 
 [node name="CloneFrame" type="Button" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputButtons"]
 margin_top = 76.0
@@ -125,6 +129,7 @@ margin_right = 30.0
 margin_bottom = 106.0
 rect_min_size = Vector2( 0, 30 )
 text = "*"
+script = ExtResource( 10 )
 
 [node name="InputControls" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider"]
 margin_left = 377.0
@@ -566,6 +571,7 @@ margin_right = 30.0
 margin_bottom = 68.0
 rect_min_size = Vector2( 0, 30 )
 text = "-"
+script = ExtResource( 8 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls"]
 margin_left = 38.0
@@ -611,6 +617,8 @@ max_value = 450.0
 
 [connection signal="file_selected" from="Panel/MainVBox/ToolBar/HBoxContainer/File/FileDialog" to="Panel/MainVBox/ToolBar/HBoxContainer/File" method="_on_FileDialog_file_selected"]
 [connection signal="pressed" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputButtons/AddFrame" to="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputButtons/AddFrame" method="_on_AddInput_pressed"]
+[connection signal="pressed" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputButtons/RemoveFrame" to="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputButtons/RemoveFrame" method="_on_RemoveFrame_pressed"]
+[connection signal="pressed" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputButtons/CloneFrame" to="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputButtons/CloneFrame" method="_on_CloneFrame_pressed"]
 [connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer/KeyU" to="." method="set_frame_inputs"]
 [connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer/KeyL" to="." method="set_frame_inputs"]
 [connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer/KeyD" to="." method="set_frame_inputs"]
@@ -628,5 +636,6 @@ max_value = 450.0
 [connection signal="value_changed" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/MousePanel/VBoxContainer/MouseYContainer/MouseY" to="." method="set_frame_inputs"]
 [connection signal="gui_input" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/MousePanel/VBoxContainer/MousePanel" to="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/MousePanel/VBoxContainer/MousePanel" method="_on_MousePanel_gui_input"]
 [connection signal="pressed" from="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/RNGButtons/AddEvent" to="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/RNGButtons/AddEvent" method="_on_AddEvent_pressed"]
+[connection signal="pressed" from="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/RNGButtons/RemoveEvent" to="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/RNGButtons/RemoveEvent" method="_on_RemoveEvent_pressed"]
 [connection signal="value_changed" from="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer/EventIndexContainer/EventIndex" to="." method="set_event_data"]
 [connection signal="value_changed" from="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer/EventValueContainer/EventValue" to="." method="set_event_data"]

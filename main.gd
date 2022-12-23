@@ -64,16 +64,16 @@ func frame_pressed(frame: Frame) -> void:
 		for child in all_frames.slice(end_indexes[0] + 1, end_indexes[1] - 1):
 			child.pressed = true
 			selected_frames.append(child)
-		selected_frames.append(all_frames[end_indexes[0]])
+		#selected_frames.append(all_frames[end_indexes[0]])
 		selected_frames.append(all_frames[end_indexes[1]])
 	else:
 		if !Input.is_action_pressed("select_multi"):
 			for frame in selected_frames:
 				frame.pressed = false
 			selected_frames = []
+			set_inputs(frame.keys, frame.mouse_held, frame.mouse_pos)
 		selected_frames.append(frame)
 		last_selected = frame.get_index()
-		set_inputs(frame.keys, frame.mouse_held, frame.mouse_pos)
 
 
 func select_event(event: Event) -> void:
@@ -94,5 +94,5 @@ func set_event_data(_dummy):
 
 func update_after(index: int) -> void:
 	var all_frames = frame_list.get_children()
-	for child in all_frames.slice(index + 2, all_frames.size()):
+	for child in all_frames.slice(index, all_frames.size()):
 		child.update_input_string()

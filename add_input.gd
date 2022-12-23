@@ -12,4 +12,4 @@ func _on_AddInput_pressed():
 	if main.last_selected != -1:
 		list.move_child(inst, main.last_selected + 1)
 	inst.set_input_string()
-	main.update_after(main.last_selected)
+	main.update_after(main.last_selected + 2)
