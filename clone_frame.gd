@@ -17,3 +17,4 @@ func _on_CloneFrame_pressed():
 		main.frame_list.add_child(inst)
 		main.frame_list.move_child(inst, end_index + i)
 	main.update_after(end_index)
+	main.mark_unsaved()

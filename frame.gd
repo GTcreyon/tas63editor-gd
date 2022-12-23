@@ -26,11 +26,13 @@ var mouse_pos: Vector2
 func give_keys(keystring: String) -> void:
 	for key in keystring:
 		keys[key] = true
+	main.mark_unsaved()
 
 
 func give_mouse(held: bool, pos: Vector2) -> void:
 	mouse_held = held
 	mouse_pos = pos
+	main.mark_unsaved()
 
 
 func set_input_string() -> void:
@@ -41,15 +43,18 @@ func set_input_string() -> void:
 
 func update_input_string() -> void:
 	label.text = " %-5s %s %s" % ["%d:" % get_index(), get_key_string(), get_mouse_string()]
+	
 
 
 func set_key_string() -> void:
 	keys = main.get_keys()
+	main.mark_unsaved()
 
 
 func set_mouse_string() -> void:
 	mouse_held = main.get_mouse_held()
 	mouse_pos = main.get_mouse_pos()
+	main.mark_unsaved()
 
 
 func get_key_string(stripped: bool = false) -> String:

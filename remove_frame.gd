@@ -11,3 +11,4 @@ func _on_RemoveFrame_pressed():
 		frame.queue_free()
 	main.selected_frames = []
 	main.update_after(min_index)
+	main.mark_unsaved()

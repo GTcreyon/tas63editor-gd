@@ -15,12 +15,25 @@ func _ready():
 	get_popup().connect("id_pressed", self, "_selected")
 
 
+func _set_current_file(path: String) -> void:
+	current_file = path
+	update_window_title()
+
+
+func update_window_title() -> void:
+	var title = "TAS63Editor: %s" % current_file.substr(current_file.find_last("/") + 1)
+	if main.unsaved:
+		title += "(*)"
+	OS.set_window_title(title)
+
+
 func _selected(id):
 	match id:
 		0: # New
 			_clear_frames()
 			_clear_events()
-			current_file = ""
+			_set_current_file("")
+			main.unsaved = false
 		1: # Open
 			file_dialog.mode = file_dialog.MODE_OPEN_FILE
 			file_dialog.popup_centered(Vector2(450, 300))
@@ -29,8 +42,10 @@ func _selected(id):
 				_save_as()
 			else:
 				_save_file(current_file)
+			main.mark_unsaved(false)
 		3: # Save As
 			_save_as()
+			main.mark_unsaved(false)
 
 
 func _save_as() -> void:
@@ -57,41 +72,45 @@ func _load_data(content: String) -> void:
 	if content.begins_with("{"):
 		content = content.substr(content.find("}") + 1)
 	var segments = content.split("/")
-	var frames = []
-	for run in segments[0].split("#"):
-		var split = run.split("&")
-		var amount
-		if split.size() > 1:
-			amount = int(split[1]) + 2
-		else:
-			amount = 1
-		for i in range(amount):
-			var inst = FRAME_PREFAB.instance()
-			frame_list.add_child(inst)
-			inst.give_keys(split[0])
-			frames.append(inst)
+	if segments[0] != "":
+		var frames = []
+		for run in segments[0].split("#"):
+			var split = run.split("&")
+			var amount
+			if split.size() > 1:
+				amount = int(split[1]) + 2
+			else:
+				amount = 1
+			for i in range(amount):
+				var inst = FRAME_PREFAB.instance()
+				frame_list.add_child(inst)
+				inst.give_keys(split[0])
+				frames.append(inst)
+		
+		var index = 0
+		for run in segments[1].split("#"):
+			var split = run.split("&")
+			var amount
+			if split.size() > 1:
+				amount = int(split[1]) + 2
+			else:
+				amount = 1
+			for i in range(amount):
+				var mouse = split[0].split("~")
+				frames[index].give_mouse(bool(int(mouse[0].substr(0, 1))), Vector2(mouse[0].substr(1), mouse[1]))
+				frames[index].update_input_string()
+				index += 1
 	
-	var index = 0
-	for run in segments[1].split("#"):
-		var split = run.split("&")
-		var amount
-		if split.size() > 1:
-			amount = int(split[1]) + 2
-		else:
-			amount = 1
-		for i in range(amount):
-			var mouse = split[0].split("~")
-			frames[index].give_mouse(bool(int(mouse[0].substr(0, 1))), Vector2(mouse[0].substr(1), mouse[1]))
-			frames[index].update_input_string()
-			index += 1
+	if segments[2] != "":
+		for event in segments[2].split("#"):
+			var split = event.split("~")
+			var inst = EVENT_PREFAB.instance()
+			inst.index = split[0]
+			inst.value = split[1]
+			event_list.add_child(inst)
+			inst.update_event_string()
 	
-	for event in segments[2].split("#"):
-		var split = event.split("~")
-		var inst = EVENT_PREFAB.instance()
-		inst.index = split[0]
-		inst.value = split[1]
-		event_list.add_child(inst)
-		inst.update_event_string()
+	main.mark_unsaved(false)
 
 
 func _generate_file() -> String:
@@ -129,15 +148,17 @@ func _generate_file() -> String:
 			prev_mouse = mouse_string
 			run_count_mouse = 0
 	
-	if run_count_key == 0:
-		keys += prev_keys
-	else:
-		keys += "%s&%d" % [prev_keys, run_count_key - 1]
+	if prev_keys != "*":
+		if run_count_key == 0:
+			keys += prev_keys
+		else:
+			keys += "%s&%d" % [prev_keys, run_count_key - 1]
 	
-	if run_count_mouse == 0:
-		mouse += prev_mouse
-	else:
-		mouse += "%s&%d" % [prev_mouse, run_count_mouse - 1]
+	if prev_mouse != "*":
+		if run_count_mouse == 0:
+			mouse += prev_mouse
+		else:
+			mouse += "%s&%d" % [prev_mouse, run_count_mouse - 1]
 	
 	var first_event = true
 	for event in event_list.get_children():
@@ -152,7 +173,7 @@ func _generate_file() -> String:
 
 
 func _on_FileDialog_file_selected(path):
-	current_file = path
+	_set_current_file(path)
 	match file_dialog.mode:
 		file_dialog.MODE_OPEN_FILE:
 			var file = File.new()

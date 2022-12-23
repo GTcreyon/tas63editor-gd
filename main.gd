@@ -3,9 +3,17 @@ extends Control
 var selected_frames: Array = []
 var last_selected: int = -1
 var selected_event: Event = null
+var unsaved: bool = false
 
 onready var frame_list = $"%InputFrames"
 onready var file_dialog = $"%FileDialog"
+onready var file_menu = $"%FileDialog/.."
+
+
+func mark_unsaved(mark: bool = true) -> void:
+	if unsaved != mark:
+		unsaved = mark
+		file_menu.update_window_title()
 
 
 func set_inputs(keys: Dictionary, mouse_held: bool, mouse_pos: Vector2) -> void:

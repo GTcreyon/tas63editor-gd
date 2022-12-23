@@ -11,6 +11,7 @@ onready var main = $"/root/Main"
 func set_event_string(new_index: String, new_value: String) -> void:
 	index = new_index
 	value = new_value
+	main.mark_unsaved()
 	update_event_string()
 
 
