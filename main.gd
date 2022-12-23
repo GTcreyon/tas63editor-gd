@@ -25,9 +25,9 @@ func set_inputs(keys: Dictionary, mouse_held: bool, mouse_pos: Vector2) -> void:
 	$"%MouseY".value = mouse_pos.y
 
 
-func set_rng(index: int, value: int) -> void:
-	$"%EventIndex".value = index
-	$"%EventValue".value = value
+func set_rng(index: String, value: String) -> void:
+	$"%EventIndex".text = index
+	$"%EventValue".text = value
 
 
 func get_keys() -> Dictionary:
@@ -64,7 +64,6 @@ func frame_pressed(frame: Frame) -> void:
 		for child in all_frames.slice(end_indexes[0] + 1, end_indexes[1] - 1):
 			child.pressed = true
 			selected_frames.append(child)
-		#selected_frames.append(all_frames[end_indexes[0]])
 		selected_frames.append(all_frames[end_indexes[1]])
 	else:
 		if !Input.is_action_pressed("select_multi"):
@@ -89,7 +88,7 @@ func set_frame_inputs(_dummy):
 
 
 func set_event_data(_dummy):
-	selected_event.set_event_string($"%EventIndex".value, $"%EventValue".value)
+	selected_event.set_event_string($"%EventIndex".text, $"%EventValue".text)
 
 
 func update_after(index: int) -> void:

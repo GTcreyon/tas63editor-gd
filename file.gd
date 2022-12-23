@@ -1,8 +1,11 @@
 extends MenuButton
 
 const FRAME_PREFAB = preload("res://frame.tscn")
+const EVENT_PREFAB = preload("res://event.tscn")
 
+onready var main = $"/root/Main"
 onready var frame_list = $"%InputFrames"
+onready var event_list = $"%RNGEvents"
 onready var file_dialog = $FileDialog
 
 
@@ -23,13 +26,20 @@ func _selected(id):
 
 
 func _clear_frames() -> void:
+	main.selected_frames = []
 	for child in frame_list.get_children():
 		# Explicitly remove child to clear indexes
 		frame_list.remove_child(child)
 		child.queue_free()
 
 
-func _load_frames(content: String) -> void:
+func _clear_events() -> void:
+	main.selected_event = null
+	for child in event_list.get_children():
+		child.queue_free()
+
+
+func _load_data(content: String) -> void:
 	if content.begins_with("{"):
 		content = content.substr(content.find("}") + 1)
 	var segments = content.split("/")
@@ -46,6 +56,7 @@ func _load_frames(content: String) -> void:
 			frame_list.add_child(inst)
 			inst.give_keys(split[0])
 			frames.append(inst)
+	
 	var index = 0
 	for run in segments[1].split("#"):
 		var split = run.split("&")
@@ -59,6 +70,14 @@ func _load_frames(content: String) -> void:
 			frames[index].give_mouse(bool(int(mouse[0].substr(0, 1))), Vector2(mouse[0].substr(1), mouse[1]))
 			frames[index].update_input_string()
 			index += 1
+	
+	for event in segments[2].split("#"):
+		var split = event.split("~")
+		var inst = EVENT_PREFAB.instance()
+		inst.index = split[0]
+		inst.value = split[1]
+		event_list.add_child(inst)
+		inst.update_event_string()
 
 
 func _generate_file() -> String:
@@ -118,7 +137,8 @@ func _on_FileDialog_file_selected(path):
 			var content = file.get_as_text()
 			file.close()
 			_clear_frames()
-			_load_frames(content)
+			_clear_events()
+			_load_data(content)
 		file_dialog.MODE_SAVE_FILE:
 			var content = _generate_file()
 			var file = File.new()
