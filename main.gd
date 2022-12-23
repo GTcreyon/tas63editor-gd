@@ -2,6 +2,7 @@ extends Control
 
 var selected_frames: Array = []
 var last_selected: int = -1
+var selected_event: Event = null
 
 onready var frame_list = $"%InputFrames"
 
@@ -22,6 +23,11 @@ func set_inputs(keys: Dictionary, mouse_held: bool, mouse_pos: Vector2) -> void:
 	$"%MouseHeld".pressed = mouse_held
 	$"%MouseX".value = mouse_pos.x
 	$"%MouseY".value = mouse_pos.y
+
+
+func set_rng(index: int, value: int) -> void:
+	$"%EventIndex".value = index
+	$"%EventValue".value = value
 
 
 func get_keys() -> Dictionary:
@@ -70,9 +76,20 @@ func frame_pressed(frame: Frame) -> void:
 		set_inputs(frame.keys, frame.mouse_held, frame.mouse_pos)
 
 
-func set_frame_inputs(button_pressed):
+func select_event(event: Event) -> void:
+	if selected_event != null:
+		selected_event.pressed = false
+	selected_event = event
+	set_rng(event.index, event.value)
+
+
+func set_frame_inputs(_dummy):
 	for frame in selected_frames:
 		frame.set_input_string()
+
+
+func set_event_data(_dummy):
+	selected_event.set_event_string($"%EventIndex".value, $"%EventValue".value)
 
 
 func update_after(index: int) -> void:

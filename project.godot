@@ -10,11 +10,17 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Button",
+"class": "Event",
+"language": "GDScript",
+"path": "res://event.gd"
+}, {
+"base": "Button",
 "class": "Frame",
 "language": "GDScript",
 "path": "res://frame.gd"
 } ]
 _global_script_class_icons={
+"Event": "",
 "Frame": ""
 }
 

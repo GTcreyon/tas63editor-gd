@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://theme.tres" type="Theme" id=1]
 [ext_resource path="res://add_input.gd" type="Script" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://mouse_panel.gd" type="Script" id=4]
 [ext_resource path="res://key.gd" type="Script" id=5]
 [ext_resource path="res://file.gd" type="Script" id=6]
+[ext_resource path="res://add_event.gd" type="Script" id=7]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -66,7 +67,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="Control" type="Control" parent="Panel/MainVBox/MainDivider/InputPanel"]
+[node name="InputDivider" type="HBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 8.0
@@ -74,18 +75,14 @@ margin_top = 8.0
 margin_right = -8.0
 margin_bottom = -8.0
 
-[node name="InputDivider" type="HBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/Control"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-
-[node name="FramePanel" type="Panel" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider"]
+[node name="FramePanel" type="Panel" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider"]
 margin_right = 331.0
 margin_bottom = 486.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_type_variation = "GroupPanel"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/FramePanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/FramePanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 8.0
@@ -93,7 +90,7 @@ margin_top = 8.0
 margin_right = -8.0
 margin_bottom = -8.0
 
-[node name="InputFrames" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/FramePanel/ScrollContainer"]
+[node name="InputFrames" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/FramePanel/ScrollContainer"]
 unique_name_in_owner = true
 margin_right = 315.0
 margin_bottom = 470.0
@@ -102,58 +99,58 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 0
 
-[node name="InputButtons" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider"]
+[node name="InputButtons" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider"]
 margin_left = 339.0
 margin_right = 369.0
 margin_bottom = 486.0
 rect_min_size = Vector2( 30, 0 )
 
-[node name="AddInput" type="Button" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputButtons"]
+[node name="AddFrame" type="Button" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputButtons"]
 margin_right = 30.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 0, 30 )
 text = "+"
 script = ExtResource( 2 )
 
-[node name="RemoveInput" type="Button" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputButtons"]
+[node name="RemoveFrame" type="Button" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputButtons"]
 margin_top = 38.0
 margin_right = 30.0
 margin_bottom = 68.0
 rect_min_size = Vector2( 0, 30 )
 text = "-"
 
-[node name="DuplicateInput" type="Button" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputButtons"]
+[node name="CloneFrame" type="Button" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputButtons"]
 margin_top = 76.0
 margin_right = 30.0
 margin_bottom = 106.0
 rect_min_size = Vector2( 0, 30 )
 text = "*"
 
-[node name="InputControls" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider"]
+[node name="InputControls" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider"]
 margin_left = 377.0
 margin_right = 618.0
 margin_bottom = 486.0
 rect_min_size = Vector2( 241, 0 )
 custom_constants/separation = 8
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls"]
 margin_right = 241.0
 margin_bottom = 148.0
 custom_constants/separation = 8
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer"]
 margin_right = 241.0
 margin_bottom = 70.0
 rect_min_size = Vector2( 0, 70 )
 size_flags_horizontal = 3
 
-[node name="ArrowPanel" type="Panel" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer"]
+[node name="ArrowPanel" type="Panel" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer"]
 margin_right = 116.0
 margin_bottom = 70.0
 size_flags_horizontal = 3
 theme_type_variation = "GroupPanel"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 8.0
@@ -161,13 +158,13 @@ margin_top = 8.0
 margin_right = -8.0
 margin_bottom = -8.0
 
-[node name="Label" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer"]
+[node name="Label" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer"]
 margin_right = 100.0
 margin_bottom = 14.0
 rect_min_size = Vector2( 0, 14 )
 text = "Arrows"
 
-[node name="GridContainer" type="GridContainer" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer"]
 margin_left = 22.0
 margin_top = 22.0
 margin_right = 78.0
@@ -176,14 +173,14 @@ rect_min_size = Vector2( 0, 52 )
 size_flags_horizontal = 4
 columns = 3
 
-[node name="Control" type="Control" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer"]
+[node name="Control" type="Control" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer"]
 margin_left = 8.0
 margin_right = 8.0
 margin_bottom = 16.0
 size_flags_horizontal = 6
 size_flags_vertical = 5
 
-[node name="KeyU" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer"]
+[node name="KeyU" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 margin_left = 20.0
 margin_right = 36.0
@@ -193,14 +190,14 @@ size_flags_vertical = 5
 script = ExtResource( 5 )
 action = "u"
 
-[node name="Control2" type="Control" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer"]
+[node name="Control2" type="Control" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer"]
 margin_left = 48.0
 margin_right = 48.0
 margin_bottom = 16.0
 size_flags_horizontal = 6
 size_flags_vertical = 5
 
-[node name="KeyL" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer"]
+[node name="KeyL" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 margin_top = 20.0
 margin_right = 16.0
@@ -210,7 +207,7 @@ size_flags_vertical = 5
 script = ExtResource( 5 )
 action = "l"
 
-[node name="KeyD" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer"]
+[node name="KeyD" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 margin_left = 20.0
 margin_top = 20.0
@@ -221,7 +218,7 @@ size_flags_vertical = 5
 script = ExtResource( 5 )
 action = "d"
 
-[node name="KeyR" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer"]
+[node name="KeyR" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 margin_left = 40.0
 margin_top = 20.0
@@ -232,14 +229,14 @@ size_flags_vertical = 5
 script = ExtResource( 5 )
 action = "r"
 
-[node name="ZXCPanel" type="Panel" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer"]
+[node name="ZXCPanel" type="Panel" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer"]
 margin_left = 124.0
 margin_right = 241.0
 margin_bottom = 70.0
 size_flags_horizontal = 3
 theme_type_variation = "GroupPanel"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 8.0
@@ -247,12 +244,12 @@ margin_top = 8.0
 margin_right = -8.0
 margin_bottom = -8.0
 
-[node name="Label4" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer"]
+[node name="Label4" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer"]
 margin_right = 101.0
 margin_bottom = 14.0
 text = "ZXC"
 
-[node name="HBoxContainer" type="GridContainer" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer"]
+[node name="HBoxContainer" type="GridContainer" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer"]
 margin_left = 22.0
 margin_top = 22.0
 margin_right = 78.0
@@ -261,7 +258,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 2
 columns = 3
 
-[node name="KeyZ" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer"]
+[node name="KeyZ" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 margin_right = 16.0
 margin_bottom = 16.0
@@ -269,7 +266,7 @@ size_flags_horizontal = 6
 script = ExtResource( 5 )
 action = "z"
 
-[node name="KeyX" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer"]
+[node name="KeyX" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 margin_left = 20.0
 margin_right = 36.0
@@ -278,7 +275,7 @@ size_flags_horizontal = 6
 script = ExtResource( 5 )
 action = "x"
 
-[node name="KeyC" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer"]
+[node name="KeyC" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer"]
 unique_name_in_owner = true
 margin_left = 40.0
 margin_right = 56.0
@@ -287,7 +284,7 @@ size_flags_horizontal = 6
 script = ExtResource( 5 )
 action = "c"
 
-[node name="Label" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer"]
 margin_left = 4.0
 margin_top = 20.0
 margin_right = 12.0
@@ -297,7 +294,7 @@ size_flags_vertical = 1
 text = "Z"
 align = 1
 
-[node name="Label2" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer"]
+[node name="Label2" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer"]
 margin_left = 24.0
 margin_top = 20.0
 margin_right = 32.0
@@ -307,7 +304,7 @@ size_flags_vertical = 1
 text = "X"
 align = 1
 
-[node name="Label3" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer"]
+[node name="Label3" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer"]
 margin_left = 44.0
 margin_top = 20.0
 margin_right = 52.0
@@ -317,26 +314,26 @@ size_flags_vertical = 1
 text = "C"
 align = 1
 
-[node name="MiscPanel" type="Panel" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer"]
+[node name="MiscPanel" type="Panel" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer"]
 margin_top = 78.0
 margin_right = 241.0
 margin_bottom = 148.0
 rect_min_size = Vector2( 0, 70 )
 theme_type_variation = "GroupPanel"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/MiscPanel"]
 anchor_right = 1.0
 margin_left = 8.0
 margin_top = 8.0
 margin_right = -8.0
 margin_bottom = -8.0
 
-[node name="Label" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer"]
+[node name="Label" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer"]
 margin_right = 225.0
 margin_bottom = 14.0
 text = "Misc"
 
-[node name="GridContainer" type="GridContainer" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer"]
+[node name="GridContainer" type="GridContainer" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer"]
 margin_left = 64.0
 margin_top = 22.0
 margin_right = 160.0
@@ -344,14 +341,14 @@ margin_bottom = 56.0
 size_flags_horizontal = 4
 columns = 5
 
-[node name="KeyP" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
+[node name="KeyP" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 margin_right = 16.0
 margin_bottom = 16.0
 script = ExtResource( 5 )
 action = "p"
 
-[node name="KeyS" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
+[node name="KeyS" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 margin_left = 20.0
 margin_right = 36.0
@@ -359,7 +356,7 @@ margin_bottom = 16.0
 script = ExtResource( 5 )
 action = "s"
 
-[node name="KeySemi" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
+[node name="KeySemi" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 margin_left = 40.0
 margin_right = 56.0
@@ -367,7 +364,7 @@ margin_bottom = 16.0
 script = ExtResource( 5 )
 action = "semi"
 
-[node name="KeyMinus" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
+[node name="KeyMinus" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 margin_left = 60.0
 margin_right = 76.0
@@ -375,7 +372,7 @@ margin_bottom = 16.0
 script = ExtResource( 5 )
 action = "minus"
 
-[node name="KeyPlus" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
+[node name="KeyPlus" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
 unique_name_in_owner = true
 margin_left = 80.0
 margin_right = 96.0
@@ -383,14 +380,14 @@ margin_bottom = 16.0
 script = ExtResource( 5 )
 action = "plus"
 
-[node name="Label" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
+[node name="Label" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
 margin_top = 20.0
 margin_right = 16.0
 margin_bottom = 34.0
 text = "P"
 align = 1
 
-[node name="Label2" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
+[node name="Label2" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
 margin_left = 20.0
 margin_top = 20.0
 margin_right = 36.0
@@ -398,7 +395,7 @@ margin_bottom = 34.0
 text = "S"
 align = 1
 
-[node name="Label3" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
+[node name="Label3" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
 margin_left = 40.0
 margin_top = 20.0
 margin_right = 56.0
@@ -406,7 +403,7 @@ margin_bottom = 34.0
 text = ";"
 align = 1
 
-[node name="Label4" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
+[node name="Label4" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
 margin_left = 60.0
 margin_top = 20.0
 margin_right = 76.0
@@ -414,7 +411,7 @@ margin_bottom = 34.0
 text = "-"
 align = 1
 
-[node name="Label5" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
+[node name="Label5" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer"]
 margin_left = 80.0
 margin_top = 20.0
 margin_right = 96.0
@@ -422,7 +419,7 @@ margin_bottom = 34.0
 text = "+"
 align = 1
 
-[node name="MousePanel" type="Panel" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls"]
+[node name="MousePanel" type="Panel" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls"]
 margin_top = 156.0
 margin_right = 241.0
 margin_bottom = 486.0
@@ -430,7 +427,7 @@ rect_min_size = Vector2( 0, 60 )
 size_flags_vertical = 3
 theme_type_variation = "GroupPanel"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/MousePanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 8.0
@@ -438,30 +435,30 @@ margin_top = 8.0
 margin_right = -8.0
 margin_bottom = -8.0
 
-[node name="Label" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer"]
+[node name="Label" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/MousePanel/VBoxContainer"]
 margin_right = 225.0
 margin_bottom = 14.0
 text = "Mouse"
 
-[node name="MouseHeld" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer"]
+[node name="MouseHeld" type="CheckBox" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/MousePanel/VBoxContainer"]
 unique_name_in_owner = true
 margin_top = 22.0
 margin_right = 225.0
 margin_bottom = 38.0
 text = "Held"
 
-[node name="MouseXContainer" type="HBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer"]
+[node name="MouseXContainer" type="HBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/MousePanel/VBoxContainer"]
 margin_top = 46.0
 margin_right = 225.0
 margin_bottom = 70.0
 
-[node name="Label" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer/MouseXContainer"]
+[node name="Label" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/MousePanel/VBoxContainer/MouseXContainer"]
 margin_top = 5.0
 margin_right = 8.0
 margin_bottom = 19.0
 text = "X"
 
-[node name="MouseX" type="SpinBox" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer/MouseXContainer"]
+[node name="MouseX" type="SpinBox" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/MousePanel/VBoxContainer/MouseXContainer"]
 unique_name_in_owner = true
 margin_left = 16.0
 margin_right = 225.0
@@ -469,18 +466,18 @@ margin_bottom = 24.0
 size_flags_horizontal = 3
 max_value = 450.0
 
-[node name="MouseYContainer" type="HBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer"]
+[node name="MouseYContainer" type="HBoxContainer" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/MousePanel/VBoxContainer"]
 margin_top = 78.0
 margin_right = 225.0
 margin_bottom = 102.0
 
-[node name="Label" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer/MouseYContainer"]
+[node name="Label" type="Label" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/MousePanel/VBoxContainer/MouseYContainer"]
 margin_top = 5.0
 margin_right = 7.0
 margin_bottom = 19.0
 text = "Y"
 
-[node name="MouseY" type="SpinBox" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer/MouseYContainer"]
+[node name="MouseY" type="SpinBox" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/MousePanel/VBoxContainer/MouseYContainer"]
 unique_name_in_owner = true
 margin_left = 15.0
 margin_right = 225.0
@@ -488,7 +485,7 @@ margin_bottom = 24.0
 size_flags_horizontal = 3
 max_value = 300.0
 
-[node name="MousePanel" type="Panel" parent="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer"]
+[node name="MousePanel" type="Panel" parent="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/MousePanel/VBoxContainer"]
 margin_top = 110.0
 margin_right = 225.0
 margin_bottom = 260.0
@@ -496,28 +493,140 @@ rect_min_size = Vector2( 225, 150 )
 theme_type_variation = "MousePanel"
 script = ExtResource( 4 )
 
-[node name="RNGPanel" type="Panel" parent="Panel/MainVBox/MainDivider"]
+[node name="RightPanel" type="Panel" parent="Panel/MainVBox/MainDivider"]
 margin_left = 642.0
 margin_right = 960.0
 margin_bottom = 502.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
+[node name="RightDivider" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="RNGPanel" type="Panel" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider"]
+margin_right = 302.0
+margin_bottom = 239.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = "GroupPanel"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="RNGEvents" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGPanel/ScrollContainer"]
+unique_name_in_owner = true
+margin_right = 286.0
+margin_bottom = 223.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_constants/separation = 0
+
+[node name="EventPanel" type="Panel" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider"]
+margin_top = 247.0
+margin_right = 302.0
+margin_bottom = 486.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = "GroupPanel"
+
+[node name="RNGControls" type="HBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+theme_type_variation = "GroupPanel"
+
+[node name="RNGButtons" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls"]
+margin_right = 30.0
+margin_bottom = 223.0
+rect_min_size = Vector2( 30, 0 )
+
+[node name="AddEvent" type="Button" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/RNGButtons"]
+margin_right = 30.0
+margin_bottom = 30.0
+rect_min_size = Vector2( 0, 30 )
+text = "+"
+script = ExtResource( 7 )
+
+[node name="RemoveEvent" type="Button" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/RNGButtons"]
+margin_top = 38.0
+margin_right = 30.0
+margin_bottom = 68.0
+rect_min_size = Vector2( 0, 30 )
+text = "-"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls"]
+margin_left = 38.0
+margin_right = 156.0
+margin_bottom = 223.0
+
+[node name="EventIndexContainer" type="HBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer"]
+margin_right = 118.0
+margin_bottom = 24.0
+
+[node name="Label" type="Label" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer/EventIndexContainer"]
+margin_top = 5.0
+margin_right = 36.0
+margin_bottom = 19.0
+text = "Index"
+
+[node name="EventIndex" type="SpinBox" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer/EventIndexContainer"]
+unique_name_in_owner = true
+margin_left = 44.0
+margin_right = 118.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+max_value = 450.0
+
+[node name="EventValueContainer" type="HBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer"]
+margin_top = 32.0
+margin_right = 118.0
+margin_bottom = 56.0
+
+[node name="Label" type="Label" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer/EventValueContainer"]
+margin_top = 5.0
+margin_right = 35.0
+margin_bottom = 19.0
+text = "Value"
+
+[node name="EventValue" type="SpinBox" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer/EventValueContainer"]
+unique_name_in_owner = true
+margin_left = 43.0
+margin_right = 118.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+max_value = 450.0
+
 [connection signal="file_selected" from="Panel/MainVBox/ToolBar/HBoxContainer/File/FileDialog" to="Panel/MainVBox/ToolBar/HBoxContainer/File" method="_on_FileDialog_file_selected"]
-[connection signal="pressed" from="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputButtons/AddInput" to="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputButtons/AddInput" method="_on_AddInput_pressed"]
-[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer/KeyU" to="." method="set_frame_inputs"]
-[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer/KeyL" to="." method="set_frame_inputs"]
-[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer/KeyD" to="." method="set_frame_inputs"]
-[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer/KeyR" to="." method="set_frame_inputs"]
-[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer/KeyZ" to="." method="set_frame_inputs"]
-[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer/KeyX" to="." method="set_frame_inputs"]
-[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer/KeyC" to="." method="set_frame_inputs"]
-[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer/KeyP" to="." method="set_frame_inputs"]
-[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer/KeyS" to="." method="set_frame_inputs"]
-[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer/KeySemi" to="." method="set_frame_inputs"]
-[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer/KeyMinus" to="." method="set_frame_inputs"]
-[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer/KeyPlus" to="." method="set_frame_inputs"]
-[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer/MouseHeld" to="." method="set_frame_inputs"]
-[connection signal="value_changed" from="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer/MouseXContainer/MouseX" to="." method="set_frame_inputs"]
-[connection signal="value_changed" from="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer/MouseYContainer/MouseY" to="." method="set_frame_inputs"]
-[connection signal="gui_input" from="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer/MousePanel" to="Panel/MainVBox/MainDivider/InputPanel/Control/InputDivider/InputControls/MousePanel/VBoxContainer/MousePanel" method="_on_MousePanel_gui_input"]
+[connection signal="pressed" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputButtons/AddFrame" to="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputButtons/AddFrame" method="_on_AddInput_pressed"]
+[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer/KeyU" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer/KeyL" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer/KeyD" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ArrowPanel/VBoxContainer/GridContainer/KeyR" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer/KeyZ" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer/KeyX" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/HBoxContainer/ZXCPanel/VBoxContainer/HBoxContainer/KeyC" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer/KeyP" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer/KeyS" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer/KeySemi" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer/KeyMinus" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/VBoxContainer/MiscPanel/VBoxContainer/GridContainer/KeyPlus" to="." method="set_frame_inputs"]
+[connection signal="toggled" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/MousePanel/VBoxContainer/MouseHeld" to="." method="set_frame_inputs"]
+[connection signal="value_changed" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/MousePanel/VBoxContainer/MouseXContainer/MouseX" to="." method="set_frame_inputs"]
+[connection signal="value_changed" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/MousePanel/VBoxContainer/MouseYContainer/MouseY" to="." method="set_frame_inputs"]
+[connection signal="gui_input" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/MousePanel/VBoxContainer/MousePanel" to="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/MousePanel/VBoxContainer/MousePanel" method="_on_MousePanel_gui_input"]
+[connection signal="pressed" from="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/RNGButtons/AddEvent" to="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/RNGButtons/AddEvent" method="_on_AddEvent_pressed"]
+[connection signal="value_changed" from="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer/EventIndexContainer/EventIndex" to="." method="set_event_data"]
+[connection signal="value_changed" from="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer/EventValueContainer/EventValue" to="." method="set_event_data"]
