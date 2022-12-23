@@ -68,12 +68,15 @@ func frame_pressed(frame: Frame) -> void:
 	if Input.is_action_pressed("select_many"):
 		var all_frames = frame_list.get_children()
 		var end_indexes = [last_selected, frame.get_index()]
+		var last_index = end_indexes[1]
 		if end_indexes[0] > end_indexes[1]:
 			end_indexes.invert()
+		print(end_indexes)
 		for child in all_frames.slice(end_indexes[0] + 1, end_indexes[1] - 1):
 			child.pressed = true
 			selected_frames.append(child)
-		selected_frames.append(all_frames[end_indexes[1]])
+		selected_frames.append(all_frames[last_index])
+		print(selected_frames)
 	else:
 		if !Input.is_action_pressed("select_multi"):
 			for frame in selected_frames:
