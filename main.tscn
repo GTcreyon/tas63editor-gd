@@ -45,6 +45,7 @@ items = [ "New", null, 0, false, false, 0, 0, null, "", false, "Open", null, 0, 
 script = ExtResource( 6 )
 
 [node name="FileDialog" type="FileDialog" parent="Panel/MainVBox/ToolBar/HBoxContainer/File"]
+unique_name_in_owner = true
 margin_right = 303.0
 margin_bottom = 127.0
 resizable = true
