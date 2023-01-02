@@ -10,5 +10,5 @@ func _process(delta):
 		if text != "":
 			action = text
 			text = ""
-		if Input.is_action_just_pressed("key_" + action):
+		if Input.is_action_just_pressed("key_" + action) and !Input.is_key_pressed(KEY_CONTROL):
 			pressed = !pressed
