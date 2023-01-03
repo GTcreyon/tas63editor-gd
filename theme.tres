@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=14 format=2]
+[gd_resource type="Theme" load_steps=17 format=2]
 
 [ext_resource path="res://monospace.tres" type="DynamicFont" id=1]
 
@@ -109,6 +109,26 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
+[sub_resource type="StyleBoxEmpty" id=13]
+
+[sub_resource type="StyleBoxFlat" id=14]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color( 0.14902, 0.14902, 0.176471, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id=15]
+content_margin_left = 8.0
+content_margin_right = 8.0
+bg_color = Color( 0.2352, 0.2352, 0.28, 1 )
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
 [resource]
 BGPanel/base_type = "Panel"
 BGPanel/styles/panel = SubResource( 1 )
@@ -130,4 +150,7 @@ HBoxContainer/constants/separation = 8
 MousePanel/base_type = "Panel"
 MousePanel/styles/panel = SubResource( 2 )
 Panel/styles/panel = SubResource( 3 )
+TabContainer/styles/panel = SubResource( 13 )
+TabContainer/styles/tab_bg = SubResource( 14 )
+TabContainer/styles/tab_fg = SubResource( 15 )
 VBoxContainer/constants/separation = 8
