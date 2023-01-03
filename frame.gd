@@ -1,7 +1,6 @@
 class_name Frame
 extends Button
 
-onready var label = $Label
 onready var main = $"/root/Main"
 
 var keys = {
@@ -42,7 +41,7 @@ func set_input_string() -> void:
 
 
 func update_input_string() -> void:
-	label.text = " %-5s %s %s" % ["%d:" % get_index(), get_key_string(), get_mouse_string()]
+	text = " %-5s %s %s" % ["%d:" % get_index(), get_key_string(), get_mouse_string()]
 	
 
 

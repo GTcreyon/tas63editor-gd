@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://help.gd" type="Script" id=1]
 [ext_resource path="res://add_input.gd" type="Script" id=2]
@@ -11,6 +11,10 @@
 [ext_resource path="res://remove_frame.gd" type="Script" id=9]
 [ext_resource path="res://clone_frame.gd" type="Script" id=10]
 [ext_resource path="res://random_event.gd" type="Script" id=11]
+[ext_resource path="res://refresh_master.gd" type="Script" id=12]
+[ext_resource path="res://refresh_warps.gd" type="Script" id=13]
+[ext_resource path="res://refresh_segment.gd" type="Script" id=14]
+[ext_resource path="res://input_path.gd" type="Script" id=15]
 
 [node name="Main" type="Control"]
 anchor_right = 1.0
@@ -37,7 +41,7 @@ anchor_bottom = 1.0
 margin_left = 8.0
 
 [node name="File" type="MenuButton" parent="Panel/MainVBox/ToolBar/HBoxContainer"]
-margin_right = 25.0
+margin_right = 39.0
 margin_bottom = 30.0
 text = "File"
 script = ExtResource( 6 )
@@ -50,8 +54,8 @@ resizable = true
 access = 2
 
 [node name="Help" type="MenuButton" parent="Panel/MainVBox/ToolBar/HBoxContainer"]
-margin_left = 33.0
-margin_right = 65.0
+margin_left = 47.0
+margin_right = 93.0
 margin_bottom = 30.0
 focus_mode = 2
 text = "Help"
@@ -521,16 +525,22 @@ margin_left = 8.0
 margin_top = 8.0
 margin_right = -8.0
 margin_bottom = -8.0
+size_flags_vertical = 3
 
-[node name="RNGPanel" type="Panel" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider"]
+[node name="RNGDivider" type="HBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider"]
 margin_right = 302.0
-margin_bottom = 159.0
+margin_bottom = 239.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-size_flags_stretch_ratio = 0.5
+
+[node name="RNGPanel" type="Panel" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider"]
+margin_right = 172.0
+margin_bottom = 239.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_type_variation = "GroupPanel"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGPanel"]
+[node name="ScrollContainer" type="ScrollContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider/RNGPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 8.0
@@ -538,23 +548,23 @@ margin_top = 8.0
 margin_right = -8.0
 margin_bottom = -8.0
 
-[node name="RNGEvents" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGPanel/ScrollContainer"]
+[node name="RNGEvents" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider/RNGPanel/ScrollContainer"]
 unique_name_in_owner = true
-margin_right = 286.0
-margin_bottom = 143.0
+margin_right = 156.0
+margin_bottom = 223.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 0
 
-[node name="EventPanel" type="Panel" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider"]
-margin_top = 167.0
+[node name="EventPanel" type="Panel" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider"]
+margin_left = 180.0
 margin_right = 302.0
-margin_bottom = 486.0
-size_flags_horizontal = 3
+margin_bottom = 239.0
+rect_min_size = Vector2( 122, 0 )
 size_flags_vertical = 3
 theme_type_variation = "GroupPanel"
 
-[node name="RNGControls" type="HBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel"]
+[node name="RNGControls" type="HBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider/EventPanel"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = 8.0
@@ -563,24 +573,24 @@ margin_right = -8.0
 margin_bottom = -8.0
 theme_type_variation = "GroupPanel"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider/EventPanel/RNGControls"]
 margin_right = 106.0
-margin_bottom = 303.0
+margin_bottom = 223.0
 
-[node name="RNGButtons" type="HBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer"]
+[node name="RNGButtons" type="HBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider/EventPanel/RNGControls/VBoxContainer"]
 margin_right = 106.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 30, 0 )
 size_flags_horizontal = 3
 
-[node name="AddEvent" type="Button" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer/RNGButtons"]
+[node name="AddEvent" type="Button" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider/EventPanel/RNGControls/VBoxContainer/RNGButtons"]
 margin_right = 30.0
 margin_bottom = 30.0
 rect_min_size = Vector2( 30, 30 )
 text = "+"
 script = ExtResource( 7 )
 
-[node name="RemoveEvent" type="Button" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer/RNGButtons"]
+[node name="RemoveEvent" type="Button" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider/EventPanel/RNGControls/VBoxContainer/RNGButtons"]
 margin_left = 38.0
 margin_right = 68.0
 margin_bottom = 30.0
@@ -588,7 +598,7 @@ rect_min_size = Vector2( 30, 30 )
 text = "-"
 script = ExtResource( 8 )
 
-[node name="RandomEvent" type="Button" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer/RNGButtons"]
+[node name="RandomEvent" type="Button" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider/EventPanel/RNGControls/VBoxContainer/RNGButtons"]
 margin_left = 76.0
 margin_right = 106.0
 margin_bottom = 30.0
@@ -596,41 +606,114 @@ rect_min_size = Vector2( 30, 30 )
 text = "@"
 script = ExtResource( 11 )
 
-[node name="EventIndexContainer" type="HBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer"]
+[node name="EventIndexContainer" type="HBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider/EventPanel/RNGControls/VBoxContainer"]
 margin_top = 38.0
 margin_right = 106.0
 margin_bottom = 62.0
 
-[node name="Label" type="Label" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer/EventIndexContainer"]
+[node name="Label" type="Label" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider/EventPanel/RNGControls/VBoxContainer/EventIndexContainer"]
 margin_top = 5.0
 margin_right = 36.0
 margin_bottom = 19.0
 text = "Index"
 
-[node name="EventIndex" type="LineEdit" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer/EventIndexContainer"]
+[node name="EventIndex" type="LineEdit" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider/EventPanel/RNGControls/VBoxContainer/EventIndexContainer"]
 unique_name_in_owner = true
 margin_left = 44.0
 margin_right = 106.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
 
-[node name="EventValueContainer" type="HBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer"]
+[node name="EventValueContainer" type="HBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider/EventPanel/RNGControls/VBoxContainer"]
 margin_top = 70.0
 margin_right = 106.0
 margin_bottom = 94.0
 
-[node name="Label" type="Label" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer/EventValueContainer"]
+[node name="Label" type="Label" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider/EventPanel/RNGControls/VBoxContainer/EventValueContainer"]
 margin_top = 5.0
 margin_right = 35.0
 margin_bottom = 19.0
 text = "Value"
 
-[node name="EventValue" type="LineEdit" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer/EventValueContainer"]
+[node name="EventValue" type="LineEdit" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider/EventPanel/RNGControls/VBoxContainer/EventValueContainer"]
 unique_name_in_owner = true
 margin_left = 43.0
 margin_right = 106.0
 margin_bottom = 24.0
 size_flags_horizontal = 3
+
+[node name="MiscPanel" type="Panel" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider"]
+margin_top = 247.0
+margin_right = 302.0
+margin_bottom = 486.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_type_variation = "GroupPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/MiscPanel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = 8.0
+margin_right = -8.0
+margin_bottom = -8.0
+
+[node name="RefreshMaster" type="Button" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/MiscPanel/VBoxContainer"]
+margin_right = 134.0
+margin_bottom = 30.0
+size_flags_horizontal = 0
+text = "Refresh master.txt"
+script = ExtResource( 12 )
+
+[node name="RefreshWarps" type="Button" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/MiscPanel/VBoxContainer"]
+margin_top = 38.0
+margin_right = 126.0
+margin_bottom = 68.0
+size_flags_horizontal = 0
+text = "Refresh warps.txt"
+script = ExtResource( 13 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/MiscPanel/VBoxContainer"]
+margin_top = 76.0
+margin_right = 286.0
+margin_bottom = 106.0
+
+[node name="RefreshSegment" type="Button" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/MiscPanel/VBoxContainer/HBoxContainer"]
+margin_right = 124.0
+margin_bottom = 30.0
+size_flags_horizontal = 0
+text = "Refresh segment"
+script = ExtResource( 14 )
+
+[node name="SegmentKey" type="SpinBox" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/MiscPanel/VBoxContainer/HBoxContainer"]
+margin_left = 132.0
+margin_right = 206.0
+margin_bottom = 30.0
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/MiscPanel/VBoxContainer"]
+margin_top = 114.0
+margin_right = 286.0
+margin_bottom = 144.0
+
+[node name="Label" type="Label" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/MiscPanel/VBoxContainer/HBoxContainer2"]
+margin_top = 8.0
+margin_right = 95.0
+margin_bottom = 22.0
+text = "Input directory"
+
+[node name="InputPath" type="LineEdit" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/MiscPanel/VBoxContainer/HBoxContainer2"]
+unique_name_in_owner = true
+margin_left = 103.0
+margin_right = 233.0
+margin_bottom = 30.0
+size_flags_horizontal = 3
+script = ExtResource( 15 )
+
+[node name="Button" type="Button" parent="Panel/MainVBox/MainDivider/RightPanel/RightDivider/MiscPanel/VBoxContainer/HBoxContainer2"]
+margin_left = 241.0
+margin_right = 286.0
+margin_bottom = 30.0
+text = "Save"
 
 [connection signal="file_selected" from="Panel/MainVBox/ToolBar/HBoxContainer/File/FileDialog" to="Panel/MainVBox/ToolBar/HBoxContainer/File" method="_on_FileDialog_file_selected"]
 [connection signal="pressed" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputButtons/AddFrame" to="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputButtons/AddFrame" method="_on_AddInput_pressed"]
@@ -652,8 +735,12 @@ size_flags_horizontal = 3
 [connection signal="value_changed" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/MousePanel/VBoxContainer/MouseXContainer/MouseX" to="." method="set_frame_inputs"]
 [connection signal="value_changed" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/MousePanel/VBoxContainer/MouseYContainer/MouseY" to="." method="set_frame_inputs"]
 [connection signal="gui_input" from="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/MousePanel/VBoxContainer/MousePanel" to="Panel/MainVBox/MainDivider/InputPanel/InputDivider/InputControls/MousePanel/VBoxContainer/MousePanel" method="_on_MousePanel_gui_input"]
-[connection signal="pressed" from="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer/RNGButtons/AddEvent" to="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer/RNGButtons/AddEvent" method="_on_AddEvent_pressed"]
-[connection signal="pressed" from="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer/RNGButtons/RemoveEvent" to="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer/RNGButtons/RemoveEvent" method="_on_RemoveEvent_pressed"]
-[connection signal="pressed" from="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer/RNGButtons/RandomEvent" to="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer/RNGButtons/RandomEvent" method="_on_RandomEvent_pressed"]
-[connection signal="text_changed" from="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer/EventIndexContainer/EventIndex" to="." method="set_event_data"]
-[connection signal="text_changed" from="Panel/MainVBox/MainDivider/RightPanel/RightDivider/EventPanel/RNGControls/VBoxContainer/EventValueContainer/EventValue" to="." method="set_event_data"]
+[connection signal="pressed" from="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider/EventPanel/RNGControls/VBoxContainer/RNGButtons/AddEvent" to="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider/EventPanel/RNGControls/VBoxContainer/RNGButtons/AddEvent" method="_on_AddEvent_pressed"]
+[connection signal="pressed" from="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider/EventPanel/RNGControls/VBoxContainer/RNGButtons/RemoveEvent" to="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider/EventPanel/RNGControls/VBoxContainer/RNGButtons/RemoveEvent" method="_on_RemoveEvent_pressed"]
+[connection signal="pressed" from="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider/EventPanel/RNGControls/VBoxContainer/RNGButtons/RandomEvent" to="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider/EventPanel/RNGControls/VBoxContainer/RNGButtons/RandomEvent" method="_on_RandomEvent_pressed"]
+[connection signal="text_changed" from="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider/EventPanel/RNGControls/VBoxContainer/EventIndexContainer/EventIndex" to="." method="set_event_data"]
+[connection signal="text_changed" from="Panel/MainVBox/MainDivider/RightPanel/RightDivider/RNGDivider/EventPanel/RNGControls/VBoxContainer/EventValueContainer/EventValue" to="." method="set_event_data"]
+[connection signal="pressed" from="Panel/MainVBox/MainDivider/RightPanel/RightDivider/MiscPanel/VBoxContainer/RefreshMaster" to="Panel/MainVBox/MainDivider/RightPanel/RightDivider/MiscPanel/VBoxContainer/RefreshMaster" method="_on_RefreshMaster_pressed"]
+[connection signal="pressed" from="Panel/MainVBox/MainDivider/RightPanel/RightDivider/MiscPanel/VBoxContainer/RefreshWarps" to="Panel/MainVBox/MainDivider/RightPanel/RightDivider/MiscPanel/VBoxContainer/RefreshWarps" method="_on_RefreshWarps_pressed"]
+[connection signal="pressed" from="Panel/MainVBox/MainDivider/RightPanel/RightDivider/MiscPanel/VBoxContainer/HBoxContainer/RefreshSegment" to="Panel/MainVBox/MainDivider/RightPanel/RightDivider/MiscPanel/VBoxContainer/HBoxContainer/RefreshSegment" method="_on_RefreshSegment_pressed"]
+[connection signal="pressed" from="Panel/MainVBox/MainDivider/RightPanel/RightDivider/MiscPanel/VBoxContainer/HBoxContainer2/Button" to="Panel/MainVBox/MainDivider/RightPanel/RightDivider/MiscPanel/VBoxContainer/HBoxContainer2/InputPath" method="_on_Button_pressed"]

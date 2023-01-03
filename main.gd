@@ -1,13 +1,32 @@
 extends Control
 
+const DEFAULT_REFRESH_ARGS = [0, 0, 0]
+const REFRESH_INTERVAL = 0.25
+
 var selected_frames: Array = []
 var last_selected: int = -1
 var selected_event: Event = null
 var unsaved: bool = false
+var refresh_args = DEFAULT_REFRESH_ARGS
+var refresh_time = 0
 
 onready var frame_list = $"%InputFrames"
 onready var file_dialog = $"%FileDialog"
 onready var file_menu = $"%FileDialog/.."
+onready var input_path = $"%InputPath"
+
+
+func _process(delta) -> void:
+	refresh_time += delta
+	if refresh_time >= REFRESH_INTERVAL:
+		refresh_time = 0
+		var file = File.new()
+		var path = input_path.text + "/refresh"
+		if file.file_exists(path):
+			file.open(path, File.WRITE)
+			file.store_string("%s,%s,%s" % refresh_args)
+			file.close()
+		refresh_args = DEFAULT_REFRESH_ARGS.duplicate()
 
 
 func mark_unsaved(mark: bool = true) -> void:
