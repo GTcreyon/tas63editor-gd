@@ -754,8 +754,6 @@ margin_right = 944.0
 margin_bottom = 462.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "test
-aa"
 show_line_numbers = true
 
 [node name="Warps" type="Panel" parent="Panel/MainVBox/TabContainer"]
@@ -786,8 +784,6 @@ margin_right = 944.0
 margin_bottom = 462.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-text = "test
-aa"
 show_line_numbers = true
 
 [connection signal="file_selected" from="Panel/MainVBox/ToolBar/HBoxContainer/File/FileDialog" to="Panel/MainVBox/ToolBar/HBoxContainer/File" method="_on_FileDialog_file_selected"]
